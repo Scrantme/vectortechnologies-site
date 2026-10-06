@@ -1,51 +1,527 @@
+/*
+ * Site styles: the evaluations app's M18 design system, as plain CSS (no build step).
+ *
+ * Colours are copied from the app's tokens (repo Vector-technologies-technical-
+ * evaluations-platform, src/app/globals.css), where a test checks their contrast in both
+ * modes. Change a colour there first, then copy it here, so the site and the app match.
+ * Light/dark follows the device setting (no switch), like the app.
+ * Fonts: Inter (text) and Space Grotesk (headings, logo), loaded from Google Fonts by
+ * each page.
+ * NOTE: tints use color-mix(), which every current browser supports; an older browser
+ *   just shows the plain background.
+ */
 :root {
-  color-scheme: light dark;
-  --text: #18181b;
-  --muted: #52525b;
-  --background: #ffffff;
-  --link: #1d4ed8;
+  color-scheme: light;
+  --background: oklch(98.5% 0.004 265);
+  --surface: oklch(100% 0 0);
+  --foreground: oklch(21% 0.02 265);
+  --muted-foreground: oklch(48% 0.02 265);
+  --border: oklch(21% 0.02 265 / 0.12);
+  --input: oklch(62% 0.02 265);
+  --primary: oklch(79% 0.135 208);
+  --primary-foreground: oklch(14.5% 0.02 265);
+  --secondary: oklch(55% 0.23 296);
+  --link: oklch(48% 0.1 215);
+  --ring: oklch(48% 0.1 215);
+  --danger: oklch(52% 0.2 27);
+  --success-bg: oklch(95% 0.04 155);
+  --success-fg: oklch(38% 0.09 155);
+  --danger-bg: oklch(95% 0.03 25);
+  --danger-fg: oklch(42% 0.15 27);
+  --neutral-bg: oklch(93% 0.008 265);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #f4f4f5;
-    --muted: #a1a1aa;
-    --background: #0a0a0a;
-    --link: #93c5fd;
+    color-scheme: dark;
+    --background: oklch(14.5% 0.02 265);
+    --surface: oklch(21% 0.02 265);
+    --foreground: oklch(86.9% 0.015 265);
+    --muted-foreground: oklch(66% 0.02 265);
+    --border: oklch(100% 0 0 / 0.1);
+    --input: oklch(52% 0.02 265);
+    --link: oklch(79% 0.135 208);
+    --ring: oklch(79% 0.135 208);
+    --danger: oklch(70% 0.19 25);
+    --success-bg: oklch(26% 0.05 155);
+    --success-fg: oklch(85% 0.12 155);
+    --danger-bg: oklch(26% 0.07 25);
+    --danger-fg: oklch(85% 0.09 25);
+    --neutral-bg: oklch(28% 0.02 265);
   }
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: var(--background);
-  color: var(--text);
-  font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--foreground);
+  font: 400 17px/1.6 var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
-main,
-footer {
-  max-width: 44rem;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-main {
-  padding-top: 4rem;
-  padding-bottom: 2rem;
-}
-h1 {
-  font-size: 2rem;
-  letter-spacing: -0.02em;
-}
-h2 {
-  margin-top: 2rem;
-  font-size: 1.2rem;
-}
-.lead {
-  font-size: 1.2rem;
-  color: var(--muted);
-}
+
 a {
   color: var(--link);
 }
-footer {
-  padding-bottom: 3rem;
-  color: var(--muted);
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+}
+
+h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+}
+
+/* --- Layout -------------------------------------------------------------------- */
+
+.wrap {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.wrap.narrow {
+  max-width: 46rem;
+}
+
+.section {
+  padding: 3.5rem 0;
+}
+
+/* --- Header and logo (matches the app's Logo, without "Evaluations") -------------- */
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+/* A rotated square's corners reach ~20% past its box; the margin keeps them inside. */
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin: 0 0.375rem;
+  border-radius: 2px;
+  background: linear-gradient(to top right, var(--primary), var(--secondary));
+  transform: rotate(45deg);
+}
+
+.logo-mark span {
+  transform: rotate(-45deg);
+  color: var(--primary-foreground);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.logo-word {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+}
+
+/* Brand cyan in dark mode, darker cyan in light (bright cyan on white is unreadable). */
+.logo-tech {
+  color: var(--link);
+}
+
+/* --- Buttons (matches the app's Button) ----------------------------------------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font: 600 0.875rem/1.4 var(--font-sans);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    opacity 0.15s;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.button-primary:hover:not(:disabled) {
+  background: color-mix(in oklch, var(--primary) 85%, transparent);
+}
+
+.button-secondary {
+  border-color: var(--input);
+  background: var(--surface);
+  color: var(--foreground);
+}
+
+.button-secondary:hover {
+  background: var(--neutral-bg);
+}
+
+/* --- Hero ------------------------------------------------------------------------ */
+
+.hero {
+  padding: 4.5rem 0 3.5rem;
+  background:
+    radial-gradient(
+      60rem 22rem at 15% 0%,
+      color-mix(in oklch, var(--primary) 14%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      40rem 20rem at 90% 10%,
+      color-mix(in oklch, var(--secondary) 12%, transparent),
+      transparent 70%
+    );
+}
+
+.hero h1 {
+  max-width: 18ch;
+  margin: 0 0 1rem;
+  font-size: clamp(2.25rem, 1.4rem + 4vw, 3.75rem);
+}
+
+.lead {
+  max-width: 40rem;
+  margin: 0 0 2rem;
+  color: var(--muted-foreground);
+  font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem);
+}
+
+/* --- Sign-up form ------------------------------------------------------------------ */
+
+.signup {
+  max-width: 34rem;
+}
+
+.signup-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.signup-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.signup input[type="email"] {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--input);
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--foreground);
+  font: 400 1rem/1.4 var(--font-sans);
+}
+
+.signup input[type="email"]::placeholder {
+  color: var(--muted-foreground);
+}
+
+.signup input[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.signup-note {
+  margin: 0.5rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+/* Always present (even empty) so screen readers announce text when it appears. */
+.signup-status {
+  margin: 0.75rem 0 0;
   font-size: 0.95rem;
+}
+
+.signup-status:empty {
+  margin: 0;
+}
+
+.signup-status.is-success,
+.signup-status.is-problem {
+  padding: 0.75rem 1rem;
+  border-radius: 2px;
+}
+
+.signup-status.is-success {
+  background: var(--success-bg);
+  color: var(--success-fg);
+}
+
+.signup-status.is-problem {
+  background: var(--danger-bg);
+  color: var(--danger-fg);
+}
+
+/* Honeypot: out of sight and out of reach for people; bots still find and fill it. */
+.hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (max-width: 30rem) {
+  .signup-controls {
+    flex-direction: column;
+  }
+}
+
+/* --- Numbers ------------------------------------------------------------------- */
+
+.numbers {
+  padding: 2.5rem 0;
+  border-block: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stats strong {
+  display: block;
+  color: var(--link);
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  line-height: 1.1;
+}
+
+.stats span {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+}
+
+.stats b {
+  color: var(--foreground);
+}
+
+.stats sup a {
+  text-decoration: none;
+}
+
+.small-print {
+  margin: 1.5rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.8rem;
+}
+
+.small-print span {
+  display: block;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 52rem) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --- Cards, tags, statement, FAQ ---------------------------------------------------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--surface);
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted-foreground);
+}
+
+.card .quote {
+  color: var(--foreground);
+  font-size: 1.05rem;
+}
+
+.steps {
+  counter-reset: step;
+}
+
+.steps .card::before {
+  counter-increment: step;
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.9rem;
+  border-radius: 2px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font: 700 0.95rem/1 var(--font-display);
+}
+
+@media (max-width: 52rem) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--surface);
+  font-size: 0.95rem;
+}
+
+.statement {
+  margin: 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--secondary);
+  font-size: 1.15rem;
+  font-style: italic;
+}
+
+.faq {
+  margin: 0;
+}
+
+.faq dt {
+  margin-top: 1.25rem;
+  font-weight: 600;
+}
+
+.faq dt:first-child {
+  margin-top: 0;
+}
+
+.faq dd {
+  margin: 0.25rem 0 0;
+  color: var(--muted-foreground);
+}
+
+.final-card {
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background:
+    linear-gradient(
+      to top right,
+      color-mix(in oklch, var(--primary) 10%, transparent),
+      color-mix(in oklch, var(--secondary) 10%, transparent)
+    ),
+    var(--surface);
+}
+
+@media (max-width: 30rem) {
+  .final-card {
+    padding: 1.25rem;
+  }
+}
+
+/* --- Footer --------------------------------------------------------------------- */
+
+.site-footer {
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+}
+
+/* --- Policy pages (/privacy/, /terms/) -------------------------------------------- */
+
+.page {
+  padding: 3rem 0 2rem;
+}
+
+.page h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 1.6rem + 2vw, 2.75rem);
+}
+
+.page h2 {
+  margin: 2.25rem 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+.page .updated {
+  margin-top: 0;
+  color: var(--muted-foreground);
+}
+
+.page li {
+  margin-bottom: 0.4rem;
 }

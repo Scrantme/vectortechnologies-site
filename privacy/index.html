@@ -4,18 +4,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Privacy Policy · Vector Technologies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+    />
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <main>
+    <!-- Linked from Google's OAuth consent screen (Cloud project vector-evals): keep this URL. -->
+    <header class="site-header">
+      <div class="wrap header-row">
+        <a class="logo" href="/" aria-label="VectorTech home">
+          <span class="logo-mark" aria-hidden="true"><span>V</span></span>
+          <span class="logo-word">Vector<span class="logo-tech">Tech</span></span>
+        </a>
+      </div>
+    </header>
+    <main class="wrap narrow page">
       <h1>Privacy Policy</h1>
-      <p>Last updated: 3 October 2026</p>
+      <p class="updated">Last updated: 6 October 2026</p>
 
       <p>
         This policy explains how Vector Technologies ("we") handles personal information in the
         Vector Technical Evaluations platform (the "Platform"), which hiring teams use to
-        schedule technical evaluations of engineering candidates. The Platform is currently
-        available by invitation only.
+        schedule technical evaluations of engineering candidates, and in the beta sign-up form
+        on our website. The Platform is currently available by invitation only.
       </p>
 
       <h2>Information we handle</h2>
@@ -32,6 +47,10 @@
         <li>
           <strong>Booking details:</strong> who booked an evaluation, when, the booker's time zone,
           and the history of status changes (for example, scheduled or cancelled).
+        </li>
+        <li>
+          <strong>Beta sign-ups:</strong> if you join the beta on our website, the email address
+          you enter and when you entered it.
         </li>
       </ul>
 
@@ -63,14 +82,17 @@
       <p>
         We use the information above only to operate the Platform: signing users in, showing each
         company its own evaluations, scheduling and cancelling evaluations, and sending the
-        related calendar invitations.
+        related calendar invitations. We use a beta sign-up's email address only to send a
+        confirmation and to contact you about the beta and onboarding; we don't add it to any
+        mailing list.
       </p>
 
       <h2>Sharing</h2>
       <p>
         We do not sell personal information. Each company sees only its own data. We rely on
         service providers to run the Platform, currently our database and authentication
-        provider and Google (for calendar features), who process data on our behalf.
+        provider, our email delivery provider, and Google (for calendar features), who process
+        data on our behalf.
       </p>
 
       <h2>Security and retention</h2>
@@ -92,6 +114,11 @@
         We will update this policy as the Platform develops and change the date above when we do.
       </p>
     </main>
-    <footer><a href="/">Vector Technologies</a> · <a href="/terms/">Terms of service</a></footer>
+    <footer class="site-footer">
+      <div class="wrap narrow">
+        © Vector Technologies · <a href="/">Home</a> · <a href="/terms/">Terms of service</a> ·
+        <a href="mailto:michael@vectortechnologies.ai">michael@vectortechnologies.ai</a>
+      </div>
+    </footer>
   </body>
 </html>

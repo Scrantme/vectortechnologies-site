@@ -3,28 +3,383 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vector Technologies</title>
+    <title>Vector Technologies · Technical evaluations for the AI era</title>
     <meta
       name="description"
-      content="In-depth technical evaluations of engineering candidates for AI-native roles and teams."
+      content="AI broke technical screening. We rebuilt it. Live, in-depth technical evaluations that verify real problem solving before a candidate ever reaches your engineering team's calendar."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
     />
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
+    <!--
+      Landing page with the beta sign-up form. All wording was approved word for word by
+      the owner on 2026-10-06 (the "beta landing page messaging" doc); change it only with
+      the owner's say-so. The form posts to the evaluations app (see the script at the end
+      and README.md).
+    -->
+    <header class="site-header">
+      <div class="wrap header-row">
+        <a class="logo" href="/" aria-label="VectorTech home">
+          <span class="logo-mark" aria-hidden="true"><span>V</span></span>
+          <span class="logo-word">Vector<span class="logo-tech">Tech</span></span>
+        </a>
+        <a class="button button-secondary" href="#join">Join the beta</a>
+      </div>
+    </header>
+
     <main>
-      <h1>Vector Technologies</h1>
-      <p class="lead">
-        In-depth technical evaluations of engineering candidates for AI-native roles and teams.
-      </p>
-      <p>
-        Hiring teams use our platform to schedule evaluations for roles such as AI-Native,
-        AI Platform, Backend, Frontend, Fullstack, Data, Platform, MLOps/LLMOps and Forward
-        Deployed Engineers. The platform is currently available by invitation only.
-      </p>
-      <p>Contact: <a href="mailto:michael@vectortechnologies.ai">michael@vectortechnologies.ai</a></p>
+      <section class="hero" id="join">
+        <div class="wrap">
+          <h1>AI broke technical screening. We rebuilt it.</h1>
+          <p class="lead">
+            Live, in-depth technical evaluations that verify real problem solving before a
+            candidate ever reaches your engineering team's calendar.
+          </p>
+          <form class="signup" novalidate>
+            <label class="signup-label" for="email-hero">Work email</label>
+            <div class="signup-controls">
+              <input
+                id="email-hero"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@company.com"
+                required
+                aria-describedby="note-hero status-hero"
+              />
+              <button class="button button-primary" type="submit">Join the beta</button>
+            </div>
+            <div class="hp" aria-hidden="true">
+              <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+            </div>
+            <p class="signup-note" id="note-hero">
+              Private beta. We'll reach out to walk you through the platform.
+            </p>
+            <p class="signup-status" id="status-hero" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="numbers" aria-label="The numbers">
+        <div class="wrap">
+          <ul class="stats">
+            <li>
+              <strong>291</strong>
+              <span>applications per hire in Q1 2026, nearly 3× the early-2021 level</span>
+            </li>
+            <li>
+              <strong>17.6</strong>
+              <span>interviews per technical hire, up 52% since 2021</span>
+            </li>
+            <li>
+              <strong>24.7 hours</strong>
+              <span
+                >of interviewer time per engineering hire, an estimated
+                <b>~$3,000</b> in raw cost<sup><a href="#estimate-note" aria-label="How the cost is estimated">*</a></sup></span
+              >
+            </li>
+            <li>
+              <strong>75 days</strong>
+              <span>median time to first fill for technical roles</span>
+            </li>
+          </ul>
+          <p class="small-print">
+            Source:
+            <a href="https://www.you-source.com/blogs/developer-hiring-statistics-2026"
+              >You-Source, Developer Hiring Statistics 2026</a
+            >
+            (citing Ashby).
+            <span id="estimate-note"
+              >* Estimate: 24.7 interviewer-hours per engineering hire (Ashby) × the average
+              hourly cost of a senior engineer, lead engineer or engineering manager, salary plus
+              employer overhead (about $121/hour).</span
+            >
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap narrow">
+          <h2>Your engineers became the filter</h2>
+          <p>
+            Generative AI lets candidates mass-produce tailored CVs and solve take-home coding
+            tests in minutes. The old screens no longer separate engineers who can build from
+            those who can prompt. So the screening moved downstream, onto your most expensive
+            and most constrained people. Tech leads spend their week live-debugging basic loops
+            on video calls instead of designing systems and shipping product.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <h2>How it works</h2>
+          <ol class="cards steps">
+            <li class="card">
+              <h3>Book.</h3>
+              <p>
+                Your Talent team picks the candidate's role and seniority, and books a time. No
+                engineer needed.
+              </p>
+            </li>
+            <li class="card">
+              <h3>Evaluate.</h3>
+              <p>
+                A Vector evaluator runs a live, in-depth technical evaluation over video,
+                testing real-time problem solving and architectural judgment.
+              </p>
+            </li>
+            <li class="card">
+              <h3>Decide.</h3>
+              <p>
+                You receive a written assessment, so only verified candidates reach your
+                engineering team.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <h2>Why Vector</h2>
+          <ul class="cards">
+            <li class="card">
+              <h3>Signal AI can't fake.</h3>
+              <p>
+                Live, real-time problem solving and design judgment, not a take-home an AI agent
+                can finish.
+              </p>
+            </li>
+            <li class="card">
+              <h3>Built for each role.</h3>
+              <p>
+                Ready-to-deploy evaluation frameworks for nine engineering roles. They separate
+                specialised skills, such as an AI-Native Engineer from an AI Platform Engineer.
+              </p>
+            </li>
+            <li class="card">
+              <h3>Your engineers stay on the roadmap.</h3>
+              <p>Talent runs the process end to end; engineering meets finalists only.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <h2>Roles covered</h2>
+          <ul class="tags">
+            <li>AI Platform Engineer</li>
+            <li>AI-Native Engineer</li>
+            <li>Backend Engineer</li>
+            <li>Data Engineer</li>
+            <li>Forward Deployed Engineer</li>
+            <li>Frontend Engineer</li>
+            <li>Fullstack Engineer</li>
+            <li>MLOps/LLMOps Engineer</li>
+            <li>Platform Engineer</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <h2>Who it's for</h2>
+          <ul class="cards">
+            <li class="card">
+              <h3>Heads of Talent</h3>
+              <p class="quote">"Send engineering only candidates who are already verified."</p>
+            </li>
+            <li class="card">
+              <h3>CTOs and VPs of Engineering</h3>
+              <p class="quote">"Give your tech leads their sprints back."</p>
+            </li>
+            <li class="card">
+              <h3>Technical founders</h3>
+              <p class="quote">"Stop interviewing. Start building."</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap narrow">
+          <h2>Built by people who've done this</h2>
+          <p class="statement">
+            Our evaluation criteria come from years of advising enterprise clients and building
+            technical staff-augmentation teams, where telling specialised engineering skills
+            apart is the whole job.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap narrow">
+          <h2>FAQ</h2>
+          <dl class="faq">
+            <dt>What is the beta?</dt>
+            <dd>
+              A small group of hiring teams using the platform before general launch. We onboard
+              each team personally.
+            </dd>
+            <dt>Do my engineers need to be involved?</dt>
+            <dd>No. Your Talent team books evaluations and reads the assessments.</dd>
+            <dt>Which roles can you evaluate?</dt>
+            <dd>The nine roles above, at junior to principal level.</dd>
+            <dt>What does a candidate experience?</dt>
+            <dd>A scheduled live video session with a Vector evaluator.</dd>
+            <dt>How fast do I get results?</dt>
+            <dd>Within 60 minutes of the evaluation finishing.</dd>
+            <dt>What does it cost during the beta?</dt>
+            <dd>
+              Your first 5 evaluations are free. If you see the value, we'll discuss custom
+              pricing options to keep using the platform.
+            </dd>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section final">
+        <div class="wrap narrow">
+          <div class="final-card">
+            <h2>Get verified engineers in front of your team.</h2>
+            <form class="signup" novalidate>
+              <label class="signup-label" for="email-final">Work email</label>
+              <div class="signup-controls">
+                <input
+                  id="email-final"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@company.com"
+                  required
+                  aria-describedby="note-final status-final"
+                />
+                <button class="button button-primary" type="submit">Join the beta</button>
+              </div>
+              <div class="hp" aria-hidden="true">
+                <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+              </div>
+              <p class="signup-note" id="note-final">
+                Private beta. We'll reach out to walk you through the platform.
+              </p>
+              <p class="signup-status" id="status-final" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
-    <footer>
-      <a href="/privacy/">Privacy policy</a> · <a href="/terms/">Terms of service</a>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        © Vector Technologies · <a href="/privacy/">Privacy policy</a> ·
+        <a href="/terms/">Terms of service</a> ·
+        <a href="mailto:michael@vectortechnologies.ai">michael@vectortechnologies.ai</a>
+      </div>
     </footer>
+
+    <script>
+      /*
+       * Beta sign-up forms (both on this page). Posts {"email", "website"} as JSON to the
+       * evaluations app's public endpoint (repo Vector-technologies-technical-evaluations-
+       * platform: src/lib/beta-signup/handler.ts), which saves the address and sends the
+       * thank-you and the owner's notification.
+       *
+       * Where it posts: the live app, except when this page is opened from localhost (a
+       * local preview, http://localhost:8080), which posts to the app running locally
+       * (http://localhost:3000), so testing never touches production.
+       * Answers: 200 = received (also for an address that already signed up, on purpose);
+       * 400 = invalid address; anything else, or no answer = "something went wrong".
+       * NOTE: "website" is a honeypot, hidden from people; bots that fill it are told "ok"
+       *   by the app and nothing is saved.
+       */
+      (function () {
+        var ENDPOINT =
+          location.hostname === "localhost"
+            ? "http://localhost:3000/api/beta-signup"
+            : "https://app.vectortechnologies.ai/api/beta-signup";
+        var INVALID = "Please enter a valid email address.";
+        var FAILED =
+          "Something went wrong on our side. Please try again in a few minutes, or email michael@vectortechnologies.ai.";
+        // Same shape the app accepts; the app has the final say.
+        var LOOKS_LIKE_EMAIL = /^[^\s@,<>]+@[^\s@,<>]+\.[^\s@,<>]+$/;
+
+        function showSuccess(status) {
+          status.textContent = "";
+          var strong = document.createElement("strong");
+          strong.textContent = "You're on the list.";
+          status.appendChild(strong);
+          status.appendChild(
+            document.createTextNode(
+              " Thanks for your interest in Vector. We've sent a confirmation to your inbox, and someone from our team will reach out shortly to walk you through the platform.",
+            ),
+          );
+          status.className = "signup-status is-success";
+        }
+
+        function showProblem(status, input, text) {
+          status.textContent = text;
+          status.className = "signup-status is-problem";
+          if (text === INVALID) {
+            input.setAttribute("aria-invalid", "true");
+            input.focus();
+          }
+        }
+
+        document.querySelectorAll("form.signup").forEach(function (form) {
+          var input = form.querySelector('input[name="email"]');
+          var honeypot = form.querySelector('input[name="website"]');
+          var button = form.querySelector('button[type="submit"]');
+          var status = form.querySelector(".signup-status");
+
+          input.addEventListener("input", function () {
+            input.removeAttribute("aria-invalid");
+          });
+
+          form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            if (button.disabled) return;
+            var email = input.value.trim();
+            if (!LOOKS_LIKE_EMAIL.test(email)) {
+              showProblem(status, input, INVALID);
+              return;
+            }
+
+            button.disabled = true;
+            button.textContent = "Sending…";
+            status.textContent = "";
+            status.className = "signup-status";
+            try {
+              var response = await fetch(ENDPOINT, {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({ email: email, website: honeypot.value }),
+              });
+              if (response.ok) {
+                form.reset();
+                showSuccess(status);
+              } else if (response.status === 400) {
+                showProblem(status, input, INVALID);
+              } else {
+                showProblem(status, input, FAILED);
+              }
+            } catch (error) {
+              // Network failure or the browser blocked the request: same advice.
+              showProblem(status, input, FAILED);
+            } finally {
+              button.disabled = false;
+              button.textContent = "Join the beta";
+            }
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
