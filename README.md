@@ -16,6 +16,7 @@ Public website for **vectortechnologies.ai**, served by GitHub Pages. Plain HTML
 - The wording was approved word for word by the owner (2026-10-06, the "beta landing page messaging" doc). Change it only with the owner's say-so. The statistics cite their source in small print under them.
 - Colours and fonts copy the evaluations app's tokens (`src/app/globals.css` in the app repo, where a test checks contrast). Change them there first, then copy them into `style.css`.
 - **The form can't save anything by itself** (GitHub Pages serves fixed files only). Its script posts the address to the evaluations app's public endpoint, `https://app.vectortechnologies.ai/api/beta-signup`, which saves it in Supabase (`beta_signups`) and sends the thank-you and the owner's notification. How that works and what to do when it fails: the app repo's `docs/OPERATIONS.md`, section 5d.
+- **Changing `style.css`:** also change the `?v=…` date on its `<link>` in **all three** pages (`index.html`, `privacy/`, `terms/`), e.g. `/style.css?v=2026-11-02`. GitHub Pages lets browsers keep a file for 10 minutes, so without a new `?v=` a returning visitor can see the new page with the old styles (it looks unstyled; happened on 2026-10-06).
 - The app only accepts the form from `https://vectortechnologies.ai`, `https://www.vectortechnologies.ai` and `http://localhost:8080` (`ALLOWED_ORIGINS` in the app). **If the site's address changes, that list must change too.**
 
 ### Previewing locally
